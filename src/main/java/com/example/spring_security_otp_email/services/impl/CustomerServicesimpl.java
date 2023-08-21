@@ -3,6 +3,7 @@ package com.example.spring_security_otp_email.services.impl;
 import com.example.spring_security_otp_email.Repo.CustomerRepo;
 import com.example.spring_security_otp_email.entities.Customer;
 import com.example.spring_security_otp_email.services.CustomerServices;
+import jdk.jfr.Category;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -67,5 +68,11 @@ public class CustomerServicesimpl implements CustomerServices {
         customer.setOneTimePassword(null);
         customer.setOtpRequestedTime(null);
         customerRepo.save(customer);
+    }
+
+    @Override
+    public Customer getCustomerByEmail(String email) {
+        Customer customer = this.customerRepo.findCustomerByEmail(email);
+        return customer;
     }
 }

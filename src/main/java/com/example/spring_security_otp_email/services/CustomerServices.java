@@ -10,8 +10,11 @@ import java.io.UnsupportedEncodingException;
 
 
 @Transactional
+@Service
 public interface CustomerServices {
     void generateOneTimePassword(Customer customer);
     void sendOTPEmail(Customer customer, String OTP) throws MessagingException, UnsupportedEncodingException;
     void clearOTP(Customer customer);
+
+    Customer getCustomerByEmail(String email);
 }
